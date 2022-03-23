@@ -4,8 +4,83 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Covid Charts</title>
+	<link href="style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+	<link href="images/coronavirus-crossed.png" rel="icon" type="image/png">
+	<link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head>
 <body>
+	<a name='home'></a>
+	<div class='home'>
+		<div class='navbar'>
+			<a href='#home' class='nav'>Home</a>
+			<a href='#global_trends' class='nav'>Global Trends</a>
+			<a href='#india_trends' class='nav'>India Trends</a>
+			<!-- <a href='#tips' class='nav'>Tips</a>
+			<a href='#symptoms' class='nav'>Symptoms & Advice</a>
+			<a href='#faqs' class='nav'>FAQs</a>
+			<a href='#yt' class='nav'>YouTube</a>
+			<a href='#hospitals' class='nav'>Emergency</a> -->
+		</div>
+		<img src='images/coronavirus.jfif' width=100%>
+		<div class='heading1' data-aos="zoom-in" data-aos-duration="1000">Covid-19 Charts</div>
+		<div class='heading2' data-aos="fade-left" data-aos-duration="1000" data-aos-delay="1000">Stats of covid infections worldwide and in India,<br> visualised in beautiful charts! </div>
+	</div>
+	<a name='global_trends'></a>
+	<div class='global_general'>
+		<div class='global_heading'>Global Trends</div>
+		<div class='global_confirmed'>
+			<div class='global_confirmed_text'>Confirmed:</div>
+			<div class='global_confirmed_total'></div>
+			<div class='global_confirmed_new'></div>
+		</div>
+		<div class='global_deaths'>
+			<div class='global_deaths_text'>Deceased:</div>
+			<div class='global_deaths_total'></div>
+			<div class='global_deaths_new'></div>
+		</div>
+	</div>
+	<a name='india_trends'></a>
+	<div class='india_general'>
+		<div class='india_heading'>India Trends</div>
+		<div class='india_confirmed'>
+			<div class='india_confirmed_text'>Confirmed:</div>
+			<div class='india_confirmed_total'></div>
+			<div class='india_confirmed_new'></div>
+		</div>
+		<div class='india_deaths'>
+			<div class='india_deaths_text'>Deceased:</div>
+			<div class='india_deaths_total'></div>
+			<div class='india_deaths_new'></div>
+		</div>
+		<div class='india_recovered'>
+			<div class='india_recovered_text'>Recovered:</div>
+			<div class='india_recovered_total'></div>
+			<div class='india_recovered_new'></div>
+		</div>
+		<div class='india_active'>
+			<div class='india_active_text'>Active:</div>
+			<div class='india_active_total'></div>
+			<div class='india_active_new'></div>
+		</div>
+	</div>
+	<div class='india_charts'>
+		<div class='india_daily_confimed_chart_text'>Number of Daily New Cases in India (Past 30 days)</div>
+		<canvas class='india_daily_confirmed_chart'></canvas>
+	</div>
+	<div class='contact'>
+		<div class='madeby'>Made by <b>Vatsal Varshney</b></div>
+		<a href='https://www.github.com/vatsalvarshney' target='_blank' class='link'><img src='images/github icon.png' width=40px></a>
+		<a href='https://www.linkedin.com/in/vatsal-varshney-2b262722a/' target='_blank' class='link'><img src='images/linkedin icon.png' width=40px></a>
+		<a href='mailto:ee3210700@iitd.ac.in?subject=Query%20regarding%20CovidCharts&body=Hey!%20I%20visited%20your%20website%20and%20had%20a%20query...' class='link'><img src='images/mail icon.png' width=40px></a>
+		<a href='https://api.whatsapp.com/send/?phone=917599005124' target='_blank' class='link'><img src='images/whatsapp icon.png' width=40px></a>
+	</div>
+
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init();
+	</script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
 	<script src="script.js"></script>
 </body>

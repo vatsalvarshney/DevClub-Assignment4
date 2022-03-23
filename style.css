@@ -1,0 +1,208 @@
+body{
+    margin: 0px 0px auto;
+}
+
+.home{
+    position: relative;
+    text-align: right;
+    color: aliceblue;
+    vertical-align: middle;
+}
+
+.navbar{
+    position: absolute;
+    width:100%;
+    padding-top: 3.1vw;
+    padding-bottom: 3.1vw;
+    padding-left: 1.56vw;
+    right: 0px;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+}
+
+.nav{
+    text-decoration: none;
+    color: aliceblue;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-right: 3.12vw;
+    font-size: 1.72vw;
+}
+
+.heading1{
+    position: absolute;
+    top: 32%;
+    right: 5.4vw;
+    font-size: 6.5vw;
+    font-family: 'Sedgwick Ave', cursive;
+}
+
+.heading2{
+    position: absolute;
+    top: 52%;
+    right: 5.46vw;
+    font-size: 1.95vw;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.global_general{
+    text-align: center;
+    padding: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:rgb(227, 250, 250);
+}
+
+.global_heading{
+    color: midnightblue;
+    padding: 20px 5px;
+    font-size: 50px;
+}
+
+.global_confirmed{
+    padding: 10px;
+    color:crimson
+}
+
+.global_deaths{
+    padding: 10px;
+    color:rgb(117, 117, 117)
+}
+
+.global_confirmed_text{
+    font-size: 30px;
+}
+
+.global_deaths_text{
+    font-size: 30px;
+}
+
+.global_confirmed_total{
+    font-size: 40px;
+}
+
+.global_confirmed_new{
+    font-size: 20px;
+}
+
+.global_deaths_total{
+    font-size: 40px;
+}
+
+.global_deaths_new{
+    font-size: 20px;
+}
+
+.india_general{
+    text-align: center;
+    padding: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:rgb(255, 248, 235);
+}
+
+.india_heading{
+    color:saddlebrown;
+    padding: 20px 5px;
+    font-size: 50px;
+}
+
+.india_confirmed{
+    padding: 10px;
+    color:crimson
+}
+
+.india_deaths{
+    padding: 10px;
+    color:rgb(117, 117, 117)
+}
+
+.india_recovered{
+    padding: 10px;
+    color:forestgreen
+}
+
+.india_active{
+    padding: 10px;
+    color:blue;
+}
+
+.india_confirmed_text{
+    font-size: 30px;
+}
+
+.india_deaths_text{
+    font-size: 30px;
+}
+
+.india_recovered_text{
+    font-size: 30px;
+}
+
+.india_active_text{
+    font-size: 30px;
+}
+
+.india_confirmed_total{
+    font-size: 40px;
+}
+
+.india_confirmed_new{
+    font-size: 20px;
+}
+
+.india_deaths_total{
+    font-size: 40px;
+}
+
+.india_deaths_new{
+    font-size: 20px;
+}
+
+.india_recovered_total{
+    font-size: 40px;
+}
+
+.india_recovered_new{
+    font-size: 20px;
+}
+
+.india_active_total{
+    font-size: 40px;
+}
+
+.india_active_new{
+    font-size: 20px;
+}
+
+.india_charts{
+    padding-bottom: 40px;
+    background-color:rgb(255, 248, 252);
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+}
+
+.india_daily_confimed_chart_text{
+    font-size: 30px;
+    padding: 40px 0 0 0;
+    color: darkmagenta;
+}
+
+.india_daily_confirmed_chart{
+    margin: 40px 20%;
+    padding: 20px;
+    background-color:rgb(255,224,230);
+}
+
+.contact{
+    color: aliceblue;
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+    background-color: rgb(14, 20, 39);
+    padding: 30px;
+}
+
+.madeby{
+    padding-bottom: 20px;
+}
+
+.link{
+    padding: 15px;
+}
