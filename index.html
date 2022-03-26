@@ -17,11 +17,6 @@
 			<a href='#home' class='nav'>Home</a>
 			<a href='#global_trends' class='nav'>Global Trends</a>
 			<a href='#india_trends' class='nav'>India Trends</a>
-			<!-- <a href='#tips' class='nav'>Tips</a>
-			<a href='#symptoms' class='nav'>Symptoms & Advice</a>
-			<a href='#faqs' class='nav'>FAQs</a>
-			<a href='#yt' class='nav'>YouTube</a>
-			<a href='#hospitals' class='nav'>Emergency</a> -->
 		</div>
 		<img src='images/coronavirus.jfif' width=100%>
 		<div class='heading1' data-aos="zoom-in" data-aos-duration="1000">Covid-19 Charts</div>
@@ -29,13 +24,13 @@
 	</div>
 	<a name='global_trends'></a>
 	<div class='global_general'>
-		<div class='global_heading'>Global Trends</div>
-		<div class='global_confirmed'>
+		<div class='global_heading' data-aos="zoom-in"><b>Global Trends</b></div>
+		<div class='global_confirmed' data-aos="zoom-in">
 			<div class='global_confirmed_text'>Confirmed:</div>
 			<div class='global_confirmed_total'></div>
 			<div class='global_confirmed_new'></div>
 		</div>
-		<div class='global_deaths'>
+		<div class='global_deaths' data-aos="zoom-in">
 			<div class='global_deaths_text'>Deceased:</div>
 			<div class='global_deaths_total'></div>
 			<div class='global_deaths_new'></div>
@@ -43,31 +38,47 @@
 	</div>
 	<a name='india_trends'></a>
 	<div class='india_general'>
-		<div class='india_heading'>India Trends</div>
-		<div class='india_confirmed'>
+		<div class='india_heading' data-aos="zoom-in"><b>India Trends</b></div>
+		<div class='india_confirmed' data-aos="zoom-in">
 			<div class='india_confirmed_text'>Confirmed:</div>
 			<div class='india_confirmed_total'></div>
 			<div class='india_confirmed_new'></div>
 		</div>
-		<div class='india_deaths'>
+		<div class='india_deaths' data-aos="zoom-in">
 			<div class='india_deaths_text'>Deceased:</div>
 			<div class='india_deaths_total'></div>
 			<div class='india_deaths_new'></div>
 		</div>
-		<div class='india_recovered'>
+		<div class='india_recovered' data-aos="zoom-in">
 			<div class='india_recovered_text'>Recovered:</div>
 			<div class='india_recovered_total'></div>
 			<div class='india_recovered_new'></div>
 		</div>
-		<div class='india_active'>
+		<div class='india_active' data-aos="zoom-in">
 			<div class='india_active_text'>Active:</div>
 			<div class='india_active_total'></div>
 			<div class='india_active_new'></div>
 		</div>
 	</div>
 	<div class='india_charts'>
-		<div class='india_daily_confimed_chart_text'>Number of Daily New Cases in India (Past 30 days)</div>
-		<canvas class='india_daily_confirmed_chart'></canvas>
+		<div class='india_daily_confirmed_chart_text' data-aos="zoom-in">Number of Daily New Cases in India</div>
+		<canvas class='india_daily_confirmed_chart' data-aos="zoom-in"></canvas>
+		<div class='india_daily_confirmed_chart_buttons'>
+			<button class='button' id='b1' onclick='resetAndPlotIndiaDailyConfirmedChart(data_india.length);' data-aos="flip-down">Beginning</button>
+			<button class='button' id='b2' onclick='resetAndPlotIndiaDailyConfirmedChart(365);' data-aos="flip-down" data-aos-delay="100">1 year</button>
+			<button class='button' id='b1' onclick='resetAndPlotIndiaDailyConfirmedChart(180);' data-aos="flip-down" data-aos-delay="200">6 months</button>
+			<button class='button' id='b2' onclick='resetAndPlotIndiaDailyConfirmedChart(90);' data-aos="flip-down" data-aos-delay="300">3 months</button>
+			<button class='button' id='b1' onclick='resetAndPlotIndiaDailyConfirmedChart(30);' data-aos="flip-down" data-aos-delay="400">30 days</button>
+		</div>
+		<div class='india_total_active_chart_text' data-aos="zoom-in">Total Number of Active Cases in India</div>
+		<canvas class='india_total_active_chart' data-aos="zoom-in"></canvas>
+		<div class='india_total_active_chart_buttons'>
+			<button class='button' id='b3' onclick='resetAndPlotIndiaTotalActiveChart(data_india.length);' data-aos="flip-down">Beginning</button>
+			<button class='button' id='b4' onclick='resetAndPlotIndiaTotalActiveChart(365);' data-aos="flip-down" data-aos-delay="100">1 year</button>
+			<button class='button' id='b3' onclick='resetAndPlotIndiaTotalActiveChart(180);' data-aos="flip-down" data-aos-delay="200">6 months</button>
+			<button class='button' id='b4' onclick='resetAndPlotIndiaTotalActiveChart(90);' data-aos="flip-down" data-aos-delay="300">3 months</button>
+			<button class='button' id='b3' onclick='resetAndPlotIndiaTotalActiveChart(30);' data-aos="flip-down" data-aos-delay="400">30 days</button>
+		</div>
 	</div>
 	<div class='contact'>
 		<div class='madeby'>Made by <b>Vatsal Varshney</b></div>
@@ -79,7 +90,10 @@
 
 	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 	<script>
-		AOS.init();
+		AOS.init({
+			once: true,
+			mirror: false,
+		});
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@3/dist/chart.min.js"></script>
 	<script src="script.js"></script>
