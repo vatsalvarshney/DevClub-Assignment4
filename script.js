@@ -1,14 +1,14 @@
 console.log("Loaded script.js");
 
 function csvToObject(x){
-    var lines=x.split('\n');
-    var result = [];
-    var headers=lines[0].split(",");
+    let lines=x.split('\n');
+    let result = [];
+    let headers=lines[0].split(",");
   
-    for(var i=1;i<lines.length-1;i++){
-        var obj = {};
-        var currentline=lines[i].split(",");
-        for(var j=0;j<headers.length;j++){
+    for(let i=1;i<lines.length-1;i++){
+        let obj = {};
+        let currentline=lines[i].split(",");
+        for(let j=0;j<headers.length;j++){
             obj[headers[j]] = currentline[j];
         }
         result.push(obj);
@@ -25,7 +25,6 @@ let request_india = new XMLHttpRequest();
 request_india.open("GET", 'https://api.covid19tracker.in/data/csv/latest/case_time_series.csv', false);
 request_india.send();
 let data_india = csvToObject(request_india.responseText);
-console.log(data_india)
 
 document.querySelector('.global_confirmed_total').innerHTML = data_global.Global.TotalConfirmed.toLocaleString('en-IN')
 document.querySelector('.global_confirmed_new').innerHTML = '+ ' + data_global.Global.NewConfirmed.toLocaleString('en-IN')
@@ -48,44 +47,104 @@ if (india_active_new>=0){
 
 let date = new Date(data_india[data_india.length-1].Date_YMD)
 
-let thirtyDaysListOld = [date];
-
-for (let i = 1; i < 30; i++) {
-    thirtyDaysListOld.push(new Date(date));
-    thirtyDaysListOld[i].setDate(thirtyDaysListOld[i].getDate()-i)
-}
-
-function dateShort(date){
+function shortDate(date){
     return date.getDate()+'/'+(date.getMonth()+1)
 }
 
-let thirtyDaysList = [];
+function nDaysList(n){
+    let nDaysListOld = [date];
 
-thirtyDaysListOld.forEach(date => {thirtyDaysList.push(dateShort(date))});
-thirtyDaysList.reverse()
+    for (let i = 1; i < n; i++) {
+        nDaysListOld.push(new Date(date));
+        nDaysListOld[i].setDate(nDaysListOld[i].getDate()-i)
+    }
 
-let thirtyDaysDataList = [];
+    let nDaysList = [];
 
-for (let i = 0; i < 30; i++) {
-    thirtyDaysDataList.push(data_india[data_india.length-30+i]['Daily Confirmed'])
+    nDaysListOld.forEach(date => {nDaysList.push(shortDate(date))});
+    nDaysList.reverse()
+
+    return nDaysList
 }
 
-let india_daily_confirmed_chart = new Chart(document.querySelector('.india_daily_confirmed_chart'), {
-    type: 'bar',
-    data: {
-        labels: thirtyDaysList,
-        datasets:[{
-            label: 'Number of Cases',
-            backgroundColor: ['rgba(255,50,50,0.5)'],
-            borderColor: 'rgba(0,0,0,1)',
-            data: thirtyDaysDataList
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+function plotIndiaDailyConfirmedChart(n){
+    let nDaysDataList = [];
+
+    for (let i = 0; i < n; i++) {
+        nDaysDataList.push(data_india[data_india.length-n+i]['Daily Confirmed'])
+    }
+
+    let india_daily_confirmed_chart = new Chart(document.querySelector('.india_daily_confirmed_chart'), {
+        type: 'bar',
+        data: {
+            labels: nDaysList(n),
+            datasets:[{
+                label: 'Number of Cases',
+                backgroundColor: 'rgba(255,50,50,0.5)',
+                borderColor: 'rgba(0,0,0,1)',
+                data: nDaysDataList
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'right'
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
             }
         }
+    })
+}
+
+function resetAndPlotIndiaDailyConfirmedChart(n) {
+    document.querySelector('.india_daily_confirmed_chart').outerHTML = "<canvas class='india_daily_confirmed_chart'></canvas>";
+    plotIndiaDailyConfirmedChart(n)
+}
+
+plotIndiaDailyConfirmedChart(30)
+
+function plotIndiaTotalActiveChart(n){
+    let nDaysDataList = [];
+
+    for (let i = 0; i < n; i++) {
+        nDaysDataList.push(Number(data_india[data_india.length-n+i]['Total Confirmed'])-Number(data_india[data_india.length-n+i]['Total Deceased'])-Number(data_india[data_india.length-n+i]['Total Recovered']))
     }
-});
+
+    let india_total_active_chart = new Chart(document.querySelector('.india_total_active_chart'), {
+        type: 'bar',
+        data: {
+            labels: nDaysList(n),
+            datasets:[{
+                label: 'Number of Cases',
+                backgroundColor: 'rgba(89,169,255,0.8)',
+                borderColor: 'rgba(0,0,0,1)',
+                data: nDaysDataList
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'right'
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    })
+}
+
+function resetAndPlotIndiaTotalActiveChart(n) {
+    document.querySelector('.india_total_active_chart').outerHTML = "<canvas class='india_total_active_chart'></canvas>";
+    plotIndiaTotalActiveChart(n)
+}
+
+plotIndiaTotalActiveChart(30)
