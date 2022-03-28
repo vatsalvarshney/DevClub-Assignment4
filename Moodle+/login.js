@@ -18,5 +18,11 @@ if (question[1]=="add") {
     answer =question[6].toString();
 }
 
-const captcha_input_element = document.querySelector("#valuepkg3");
-captcha_input_element.value = answer;
+document.querySelector("#valuepkg3").value = answer;
+
+document.querySelector("#username").value = "";   // put your moodle username inside the inverted commas
+document.querySelector("#password").value = "";   // put your moodle password inside the inverted commas
+
+if ((document.querySelector("#username").value != "") & (document.querySelector("#password").value != "")){
+    document.querySelector("#loginbtn").click();
+}
