@@ -1,5 +1,5 @@
 # Moodle+
-This is a Chrome Extension which solves the captcha in moodle automatically!
+This is a Chrome Extension which automatically solves the captcha in moodle and auto-submits!
 
 ## Setting up the Extension
 * Download the [Moodle+](/Moodle+/) folder on your local machine
