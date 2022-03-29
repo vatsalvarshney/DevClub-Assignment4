@@ -1,5 +1,3 @@
-console.log("Loaded script.js");
-
 function csvToObject(x){
     let lines=x.split('\n');
     let result = [];
@@ -26,29 +24,16 @@ request_india.open("GET", 'https://api.covid19tracker.in/data/csv/latest/case_ti
 request_india.send();
 let data_india = csvToObject(request_india.responseText);
 
-document.querySelector('.global_confirmed_total').innerHTML = data_global.Global.TotalConfirmed.toLocaleString('en-IN')
-document.querySelector('.global_confirmed_new').innerHTML = '+ ' + data_global.Global.NewConfirmed.toLocaleString('en-IN')
-document.querySelector('.global_deaths_total').innerHTML = data_global.Global.TotalDeaths.toLocaleString('en-IN')
-document.querySelector('.global_deaths_new').innerHTML = '+ ' + data_global.Global.NewDeaths.toLocaleString('en-IN')
-document.querySelector('.india_confirmed_total').innerHTML = Number(data_india[data_india.length-1]['Total Confirmed']).toLocaleString('en-IN')
-document.querySelector('.india_confirmed_new').innerHTML = '+ ' + Number(data_india[data_india.length-1]['Daily Confirmed']).toLocaleString('en-IN')
-document.querySelector('.india_deaths_total').innerHTML = Number(data_india[data_india.length-1]['Total Deceased']).toLocaleString('en-IN')
-document.querySelector('.india_deaths_new').innerHTML = '+ ' + Number(data_india[data_india.length-1]['Daily Deceased']).toLocaleString('en-IN')
-document.querySelector('.india_recovered_total').innerHTML = Number(data_india[data_india.length-1]['Total Recovered']).toLocaleString('en-IN')
-document.querySelector('.india_recovered_new').innerHTML = '+ ' + Number(data_india[data_india.length-1]['Daily Recovered']).toLocaleString('en-IN')
-document.querySelector('.india_active_total').innerHTML = (Number(data_india[data_india.length-1]['Total Confirmed'])-Number(data_india[data_india.length-1]['Total Deceased'])-Number(data_india[data_india.length-1]['Total Recovered'])).toLocaleString('en-IN')
-let india_active_new = Number(data_india[data_india.length-1]['Daily Confirmed'])-Number(data_india[data_india.length-1]['Daily Deceased'])-Number(data_india[data_india.length-1]['Daily Recovered'])
+let num_format = 'en-IN'
 
-if (india_active_new>=0){
-    document.querySelector('.india_active_new').innerHTML = '+ ' + india_active_new.toLocaleString('en-IN');
-}else{
-    document.querySelector('.india_active_new').innerHTML = india_active_new.toLocaleString('en-IN');
-}
-
-let date = new Date(data_india[data_india.length-1].Date_YMD)
+let date = new Date(data_india[data_india.length-2].Date_YMD)
 
 function shortDate(date){
-    return date.getDate()+'/'+(date.getMonth()+1)
+    if (num_format=='en-US'){
+        return (date.getMonth()+1)+'/'+date.getDate()
+    } else {
+        return date.getDate()+'/'+(date.getMonth()+1)
+    }
 }
 
 function nDaysList(n){
@@ -68,10 +53,12 @@ function nDaysList(n){
 }
 
 function plotIndiaDailyConfirmedChart(n){
+    document.querySelector('.india_daily_confirmed_chart').outerHTML = "<canvas class='india_daily_confirmed_chart'></canvas>";
+
     let nDaysDataList = [];
 
     for (let i = 0; i < n; i++) {
-        nDaysDataList.push(data_india[data_india.length-n+i]['Daily Confirmed'])
+        nDaysDataList.push(data_india[data_india.length-n+i-1]['Daily Confirmed'])
     }
 
     let india_daily_confirmed_chart = new Chart(document.querySelector('.india_daily_confirmed_chart'), {
@@ -101,18 +88,13 @@ function plotIndiaDailyConfirmedChart(n){
     })
 }
 
-function resetAndPlotIndiaDailyConfirmedChart(n) {
-    document.querySelector('.india_daily_confirmed_chart').outerHTML = "<canvas class='india_daily_confirmed_chart'></canvas>";
-    plotIndiaDailyConfirmedChart(n)
-}
-
-plotIndiaDailyConfirmedChart(30)
-
 function plotIndiaTotalActiveChart(n){
+    document.querySelector('.india_total_active_chart').outerHTML = "<canvas class='india_total_active_chart'></canvas>";
+
     let nDaysDataList = [];
 
     for (let i = 0; i < n; i++) {
-        nDaysDataList.push(Number(data_india[data_india.length-n+i]['Total Confirmed'])-Number(data_india[data_india.length-n+i]['Total Deceased'])-Number(data_india[data_india.length-n+i]['Total Recovered']))
+        nDaysDataList.push(Number(data_india[data_india.length-n+i-1]['Total Confirmed'])-Number(data_india[data_india.length-n+i]['Total Deceased'])-Number(data_india[data_india.length-n+i]['Total Recovered']))
     }
 
     let india_total_active_chart = new Chart(document.querySelector('.india_total_active_chart'), {
@@ -142,9 +124,28 @@ function plotIndiaTotalActiveChart(n){
     })
 }
 
-function resetAndPlotIndiaTotalActiveChart(n) {
-    document.querySelector('.india_total_active_chart').outerHTML = "<canvas class='india_total_active_chart'></canvas>";
-    plotIndiaTotalActiveChart(n)
+function load_trends_data(){
+    document.querySelector('.global_confirmed_total').innerHTML = data_global.Global.TotalConfirmed.toLocaleString(num_format)
+    document.querySelector('.global_confirmed_new').innerHTML = '+ ' + data_global.Global.NewConfirmed.toLocaleString(num_format)
+    document.querySelector('.global_deaths_total').innerHTML = data_global.Global.TotalDeaths.toLocaleString(num_format)
+    document.querySelector('.global_deaths_new').innerHTML = '+ ' + data_global.Global.NewDeaths.toLocaleString(num_format)
+    document.querySelector('.india_confirmed_total').innerHTML = Number(data_india[data_india.length-2]['Total Confirmed']).toLocaleString(num_format)
+    document.querySelector('.india_confirmed_new').innerHTML = '+ ' + Number(data_india[data_india.length-2]['Daily Confirmed']).toLocaleString(num_format)
+    document.querySelector('.india_deaths_total').innerHTML = Number(data_india[data_india.length-2]['Total Deceased']).toLocaleString(num_format)
+    document.querySelector('.india_deaths_new').innerHTML = '+ ' + Number(data_india[data_india.length-2]['Daily Deceased']).toLocaleString(num_format)
+    document.querySelector('.india_recovered_total').innerHTML = Number(data_india[data_india.length-2]['Total Recovered']).toLocaleString(num_format)
+    document.querySelector('.india_recovered_new').innerHTML = '+ ' + Number(data_india[data_india.length-2]['Daily Recovered']).toLocaleString(num_format)
+    document.querySelector('.india_active_total').innerHTML = (Number(data_india[data_india.length-2]['Total Confirmed'])-Number(data_india[data_india.length-2]['Total Deceased'])-Number(data_india[data_india.length-2]['Total Recovered'])).toLocaleString(num_format)
+    let india_active_new = Number(data_india[data_india.length-2]['Daily Confirmed'])-Number(data_india[data_india.length-2]['Daily Deceased'])-Number(data_india[data_india.length-2]['Daily Recovered'])
+
+    if (india_active_new>=0){
+        document.querySelector('.india_active_new').innerHTML = '+ ' + india_active_new.toLocaleString(num_format);
+    }else{
+        document.querySelector('.india_active_new').innerHTML = india_active_new.toLocaleString(num_format);
+    }
+
+    plotIndiaDailyConfirmedChart(30)
+    plotIndiaTotalActiveChart(30)
 }
 
-plotIndiaTotalActiveChart(30)
+load_trends_data()

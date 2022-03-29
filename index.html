@@ -14,6 +14,10 @@
 	<a name='home'></a>
 	<div class='home'>
 		<div class='navbar'>
+			<button class='num_format_button' onclick="num_format = 'en-IN'; load_trends_data();">IN</button>
+			<button class='num_format_button' onclick="num_format = 'en-US'; load_trends_data();">US</button>
+			<button class='num_format_button' onclick="num_format = 'en-EU'; load_trends_data();">EU</button>
+			<a></a>
 			<a href='#home' class='nav'>Home</a>
 			<a href='#global_trends' class='nav'>Global Trends</a>
 			<a href='#india_trends' class='nav'>India Trends</a>
@@ -64,20 +68,20 @@
 		<div class='india_daily_confirmed_chart_text' data-aos="zoom-in">Number of Daily New Cases in India</div>
 		<canvas class='india_daily_confirmed_chart' data-aos="zoom-in"></canvas>
 		<div class='india_daily_confirmed_chart_buttons'>
-			<button class='button' id='b1' onclick='resetAndPlotIndiaDailyConfirmedChart(data_india.length);' data-aos="flip-down">Beginning</button>
-			<button class='button' id='b2' onclick='resetAndPlotIndiaDailyConfirmedChart(365);' data-aos="flip-down" data-aos-delay="100">1 year</button>
-			<button class='button' id='b1' onclick='resetAndPlotIndiaDailyConfirmedChart(180);' data-aos="flip-down" data-aos-delay="200">6 months</button>
-			<button class='button' id='b2' onclick='resetAndPlotIndiaDailyConfirmedChart(90);' data-aos="flip-down" data-aos-delay="300">3 months</button>
-			<button class='button' id='b1' onclick='resetAndPlotIndiaDailyConfirmedChart(30);' data-aos="flip-down" data-aos-delay="400">30 days</button>
+			<button class='button' id='b1' onclick='plotIndiaDailyConfirmedChart(data_india.length-1);' data-aos="flip-down">Beginning</button>
+			<button class='button' id='b2' onclick='plotIndiaDailyConfirmedChart(365);' data-aos="flip-down" data-aos-delay="100">1 year</button>
+			<button class='button' id='b1' onclick='plotIndiaDailyConfirmedChart(180);' data-aos="flip-down" data-aos-delay="200">6 months</button>
+			<button class='button' id='b2' onclick='plotIndiaDailyConfirmedChart(90);' data-aos="flip-down" data-aos-delay="300">3 months</button>
+			<button class='button' id='b1' onclick='plotIndiaDailyConfirmedChart(30);' data-aos="flip-down" data-aos-delay="400">30 days</button>
 		</div>
 		<div class='india_total_active_chart_text' data-aos="zoom-in">Total Number of Active Cases in India</div>
 		<canvas class='india_total_active_chart' data-aos="zoom-in"></canvas>
 		<div class='india_total_active_chart_buttons'>
-			<button class='button' id='b3' onclick='resetAndPlotIndiaTotalActiveChart(data_india.length);' data-aos="flip-down">Beginning</button>
-			<button class='button' id='b4' onclick='resetAndPlotIndiaTotalActiveChart(365);' data-aos="flip-down" data-aos-delay="100">1 year</button>
-			<button class='button' id='b3' onclick='resetAndPlotIndiaTotalActiveChart(180);' data-aos="flip-down" data-aos-delay="200">6 months</button>
-			<button class='button' id='b4' onclick='resetAndPlotIndiaTotalActiveChart(90);' data-aos="flip-down" data-aos-delay="300">3 months</button>
-			<button class='button' id='b3' onclick='resetAndPlotIndiaTotalActiveChart(30);' data-aos="flip-down" data-aos-delay="400">30 days</button>
+			<button class='button' id='b3' onclick='plotIndiaTotalActiveChart(data_india.length-1);' data-aos="flip-down">Beginning</button>
+			<button class='button' id='b4' onclick='plotIndiaTotalActiveChart(365);' data-aos="flip-down" data-aos-delay="100">1 year</button>
+			<button class='button' id='b3' onclick='plotIndiaTotalActiveChart(180);' data-aos="flip-down" data-aos-delay="200">6 months</button>
+			<button class='button' id='b4' onclick='plotIndiaTotalActiveChart(90);' data-aos="flip-down" data-aos-delay="300">3 months</button>
+			<button class='button' id='b3' onclick='plotIndiaTotalActiveChart(30);' data-aos="flip-down" data-aos-delay="400">30 days</button>
 		</div>
 	</div>
 	<div class='contact'>
